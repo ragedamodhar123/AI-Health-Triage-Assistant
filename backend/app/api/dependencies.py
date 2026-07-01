@@ -5,6 +5,7 @@ from app.database.session import SessionLocal
 from app.services.consultation_service import ConsultationService
 from app.services.user_service import UserService
 from app.services.auth_service import AuthService
+from app.services.symptom_service import SymptomService
 
 
 def get_db():
@@ -31,3 +32,8 @@ def get_auth_service(
     db: Session = Depends(get_db),
 ):
     return AuthService(db)
+
+def get_symptom_service(
+    db: Session = Depends(get_db),
+):
+    return SymptomService(db)

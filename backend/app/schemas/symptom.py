@@ -1,14 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
-class SymptomInput(BaseModel):
+class SymptomResponse(BaseModel):
+    id: int
     name: str
-    severity: int = 1
+    normalized_name: str
+
+    model_config = ConfigDict(from_attributes=True)
 
 
-class SymptomSuggestion(BaseModel):
-    symptom: str
-
-
-class SymptomListResponse(BaseModel):
-    symptoms: list[SymptomSuggestion]
+class SymptomSearchResponse(BaseModel):
+    symptoms: list[SymptomResponse]
